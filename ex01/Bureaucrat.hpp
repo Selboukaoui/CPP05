@@ -22,7 +22,9 @@ class Bureaucrat {
 		void setName(std::string _name);
 		void incrGrade();
 		void decrGrade();
+		void signForm();
 
+		
 		class GradeTooHighException : public std::exception {
 			public:
 				const char *what() const throw() override;

@@ -2,36 +2,44 @@
 
 int main()
 {
-	Bureaucrat boy;
+	try {
+		Bureaucrat hi("High", 160);		
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
-	boy.setName("ALPHA");
+	Bureaucrat alpha;
 
-	std::cout << boy << std::endl;
+	alpha.setName("ALPHA");
 
-	boy.incrGrade();
-	std::cout << boy << std::endl;
+	std::cout << alpha << std::endl;
+
+	alpha.incrGrade();
+	std::cout << alpha << std::endl;
 
 	std::cout << std::endl;
 	std::cout << std::endl;
 
-	Bureaucrat girl(boy);
+	Bureaucrat hitmana(alpha);
 	
 	
-	std::cout << girl << std::endl;
+	std::cout << hitmana << std::endl;
 
-	girl.setName("HITMANA");
+	hitmana.setName("HITMANA");
 	
-	std::cout << girl << std::endl;
+	std::cout << hitmana << std::endl;
 
-	girl.decrGrade();
-	std::cout << girl << std::endl;
+	hitmana.decrGrade();
+	std::cout << hitmana << std::endl;
 
 	try{
-		girl.decrGrade();
+		hitmana.decrGrade();
 	}
 	catch (std::exception& e){
 		
 		std::cout << e.what() << std::endl;
 	}
-	std::cout << girl << std::endl;
+	std::cout << hitmana << std::endl;
 }

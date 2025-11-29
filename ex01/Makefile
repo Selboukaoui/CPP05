@@ -3,7 +3,7 @@ CPPFLAGS = -Wall -Wextra -Werror
 
 NAME = Bureaucrat
 
-SRCS = main.cpp Bureaucrat.cpp 
+SRCS = main.cpp Bureaucrat.cpp Form.cpp 
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -16,7 +16,7 @@ $(NAME): $(OBJS)
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(NAME)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -rf $(NAME)

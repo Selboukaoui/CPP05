@@ -1,37 +1,18 @@
 #include "Bureaucrat.hpp"
-
+#include "Form.hpp"
 int main()
 {
-	Bureaucrat boy;
-
-	boy.setName("ALPHA");
-
-	std::cout << boy << std::endl;
-
-	boy.incrGrade();
-	std::cout << boy << std::endl;
-
-	std::cout << std::endl;
-	std::cout << std::endl;
-
-	Bureaucrat girl(boy);
-	
-	
-	std::cout << girl << std::endl;
-
-	girl.setName("HITMANA");
-	
-	std::cout << girl << std::endl;
-
-	girl.decrGrade();
-	std::cout << girl << std::endl;
-
 	try{
-		girl.decrGrade();
+		Form form("samir", false, 0, 2);
 	}
 	catch (std::exception& e){
-		
-		std::cout << e.what() << std::endl;
+		std::cout << e.what() << std::endl << std::endl;
 	}
-	std::cout << girl << std::endl;
+	Form bac("baccalurate", false, 90, 100);
+
+	Bureaucrat alpha("ALPHA", 1);
+	
+	alpha.signForm();
+
+
 }
