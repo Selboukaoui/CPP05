@@ -76,14 +76,14 @@ std::ostream&  operator<<(std::ostream &os, const Bureaucrat &other)
 
 // ex01
 
-void Bureaucrat::signForm()
+void Bureaucrat::signForm(Form& _form)
 {
 	try {
-		Form tmp;
-		tmp.beSigned(*this);
+		_form.beSigned(*this);
 	}
 	catch (std::exception &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 }
+

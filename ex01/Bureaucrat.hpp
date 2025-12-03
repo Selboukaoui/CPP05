@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "Form.hpp"
 
 class Bureaucrat {
 
@@ -22,17 +23,17 @@ class Bureaucrat {
 		void setName(std::string _name);
 		void incrGrade();
 		void decrGrade();
-		void signForm();
+		void signForm(Form& _form);
 
 		
 		class GradeTooHighException : public std::exception {
 			public:
-				const char *what() const throw() override;
+				const char *what() const throw();
 		};
 
 		class GradeTooLowException : public std::exception {
 			public:
-				const char *what() const throw() override;
+				const char *what() const throw();
 		};
 };
 	

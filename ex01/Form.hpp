@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
-#include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form 
 {
@@ -12,32 +13,35 @@ class Form
 
     public:
         Form();
-        Form(std::string name, bool sign, const int reqTosign, const int reqToExec);
+        Form(std::string name, const int reqTosign, const int reqToExec);
         Form(Form& other);
         Form& operator=(Form& other);
         ~Form();
 
         std::string     getName() const;
-        bool            isSigned();
-        int             requiredGradeToSign();
-        int             requiredGradeToExecute();
-        void            beSigned(Bureaucrat &r);
+        bool            isSigned() const; 
+        int             requiredGradeToSign() const;
+        int             requiredGradeToExecute() const;
+        void            beSigned(const  Bureaucrat &r);
         
         
         class GradeTooHighException : public std::exception {
 			public:
-				const char *what() const throw() override;
+				const char *what() const throw();
 		};
 		class GradeTooLowException : public std::exception {
 			public:
-				const char *what() const throw() override;
+				const char *what() const throw();
 		};
         class NotSignedException : public std::exception 
         {
             public:
-                const char *what() const throw() override;
+                std::string err_msg;
+                NotSignedException(const std::string& BurName, const std::string& FormName, const std::string& reason);
+                const char *what() const throw();
+                virtual ~NotSignedException() throw();
         };
 
 };
 
-std::ostream& operator<<(std::ostream &os, Form &other);
+std::ostream& operator<<(std::ostream &os,  Form &other);
