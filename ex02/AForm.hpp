@@ -42,6 +42,8 @@ class Form
                 virtual ~NotSignedException() throw();
         };
 
+        // ex02
+        virtual void execute(Bureaucrat const & executor) const = 0;
 };
 
 std::ostream& operator<<(std::ostream &os,  Form &other);
