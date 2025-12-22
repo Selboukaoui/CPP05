@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
-
+#include <iostream>
+#include <ostream> 
+#include <exception>
 class Bureaucrat;
 
 class Form 
@@ -14,8 +16,8 @@ class Form
     public:
         Form();
         Form(std::string name, const int reqTosign, const int reqToExec);
-        Form(Form& other);
-        Form& operator=(Form& other);
+        Form(const Form& other);
+        Form& operator=(const Form& other);
         ~Form();
 
         std::string     getName() const;
@@ -44,4 +46,4 @@ class Form
 
 };
 
-std::ostream& operator<<(std::ostream &os,  Form &other);
+std::ostream& operator<<(std::ostream &os,  const Form &other);

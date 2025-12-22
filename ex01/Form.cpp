@@ -2,7 +2,7 @@
 #include "Bureaucrat.hpp"
 
 
-std::ostream& operator<<(std::ostream &os, Form &other)
+std::ostream& operator<<(std::ostream &os, const Form &other)
 {
     os << "============================================================\n"                        
      << "=    The Form Name:                       "<< other.getName()  << "\n"                             
@@ -27,11 +27,11 @@ Form::Form(std::string name, const int reqTosign, const int reqToExec)
 }
 
 
-Form::Form(Form& other) 
+Form::Form(const Form& other) 
 :_name(other._name), _signed(other._signed), reqGradeToSign(other.reqGradeToSign), reqGradeToExec(other.reqGradeToExec) {}
 
 
-Form& Form::operator=(Form& other)
+Form& Form::operator=(const Form& other)
 {
     if (this != &other)
     {
@@ -68,7 +68,7 @@ const char* Form::GradeTooHighException::what() const throw(){
 
 Form::NotSignedException::NotSignedException(const std::string& BurName, const std::string& FormName, const std::string& reason)
 {
-    err_msg = BurName + " Couldn't sign " + FormName + reason;
+    err_msg = BurName + " couldn't sign " + FormName + " because " + reason;
 }
 
 
@@ -76,17 +76,13 @@ const char* Form::NotSignedException::what() const throw(){
 	return (err_msg.c_str());
 }
 
-void    Form::beSigned(const Bureaucrat &r)
+void Form::beSigned(const Bureaucrat &r)
 {
-    if (r.getGrade() <= reqGradeToSign && !_signed){
-        std::cout << r.getName() << " signed " << _name << std::endl;
-        _signed = true;
-    }
-    else if (_signed == true)
-    {
-        throw NotSignedException(r.getName(), this->getName(), " because it's alreay signed ");
-    }
-    else{
-        throw NotSignedException(r.getName(), this->getName(), " because their Grade is too low ");
-    }
+    if (_signed)
+        throw NotSignedException(r.getName(), this->getName(), "it's already signed");
+    
+    if (r.getGrade() > reqGradeToSign)
+        throw NotSignedException(r.getName(), this->getName(), "their grade is too low");
+    
+    _signed = true;
 }

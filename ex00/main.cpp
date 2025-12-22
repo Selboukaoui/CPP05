@@ -10,28 +10,31 @@ int main()
 		std::cout << e.what() << std::endl;
 	}
 
-	Bureaucrat alpha;
+	Bureaucrat alpha("Alpha", 1);
 
-	alpha.setName("ALPHA");
+
 
 	std::cout << alpha << std::endl;
 
-	alpha.incrGrade();
+	try{
+		alpha.decrGrade();
+	}
+	catch (std::exception& e){
+		
+		std::cout << e.what() << std::endl;
+	}
 	std::cout << alpha << std::endl;
 
 	std::cout << std::endl;
 	std::cout << std::endl;
 
-	Bureaucrat hitmana(alpha);
+	Bureaucrat hitmana("Hitmana", 150);
 	
 	
 	std::cout << hitmana << std::endl;
-
-	hitmana.setName("HITMANA");
 	
-	std::cout << hitmana << std::endl;
+	hitmana = alpha;
 
-	hitmana.decrGrade();
 	std::cout << hitmana << std::endl;
 
 	try{
@@ -41,5 +44,16 @@ int main()
 		
 		std::cout << e.what() << std::endl;
 	}
+
+	std::cout << hitmana << std::endl;
+
+	try{
+		hitmana.decrGrade();
+	}
+	catch (std::exception& e){
+		
+		std::cout << e.what() << std::endl;
+	}
+
 	std::cout << hitmana << std::endl;
 }

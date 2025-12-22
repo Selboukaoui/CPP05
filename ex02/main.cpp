@@ -1,81 +1,79 @@
-
-
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
-
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include <iostream>
 
 int main()
 {
-    // Out of range 
-    try {
-        Form A("bad grade", 0, 1);
+    try
+    {
+        Bureaucrat boss("Boss", 10);
+
+        ShrubberyCreationForm shrub("Home");
+        RobotomyRequestForm robot("Bemo");
+        PresidentialPardonForm pardon("Samir");
+
+        boss.signForm(shrub);
+        boss.executeForm(shrub);
+
+        std::cout << "\n" << std::endl;
+
+        boss.signForm(robot);
+        boss.executeForm(robot);
+
+        std::cout << "\n" << std::endl;
+
+
+        boss.signForm(pardon);
+        boss.executeForm(pardon);
     }
     catch (std::exception &e)
     {
-        std:: cout << e.what() << std::endl;
+        std::cout << "Exception: " << e.what() << std::endl;
     }
 
-    try {
-        Form A("bad grade", 151, 1);
-     }
-     catch (std::exception &e)
-     {
-        std:: cout << e.what() << std::endl;
-     }
+    std::cout << "\n -- Form is not signed -- \n" << std::endl;
 
-    try {
-        Form A("bad grade", 1, 151);
-     }
-     catch (std::exception &e)
-     {
-        std:: cout << e.what() << std::endl;
-     }
+    try
+    {
+        ShrubberyCreationForm shrub("office");
+        Bureaucrat ceo("CEO", 1);
 
-     try {
-        Form A("bad grade", 1, 0);
-     }
-     catch (std::exception &e)
-     {
-        std:: cout << e.what() << std::endl;
-     }
+        ceo.executeForm(shrub);
+    }
+    catch (std::exception &e)
+    {
+        std::cout << "Exception (not signed): " << e.what() << std::endl;
+    }
 
+    std::cout << "\n -- Couldn't sign Grade is too low -- \n" << std::endl;
+    try
+    {
+        RobotomyRequestForm robot("Emo");
+        Bureaucrat stagiaire("stagiaire", 150);
 
-    Bureaucrat K("kamo", 1);
-    Bureaucrat D("dojo", 150);
+        stagiaire.signForm(robot);
+    }
+    catch (std::exception &e)
+    {
+        std::cout << "Exception (sign grade too low): " << e.what() << std::endl;
+    }
 
-    Form Bac("Baccalaureate", 2, 2);
+    std::cout << "\n -- couldn't execute Grade is too low -- \n" << std::endl;
+    try
+    {
+        PresidentialPardonForm pardon("Ford Prefect");
+        Bureaucrat boss("Boss", 1);
+        Bureaucrat low("Low", 150);
 
-    std::cout << Bac << std::endl;
-    // ---- should sign
+        boss.signForm(pardon);
+        low.executeForm(pardon);
+    }
+    catch (std::exception &e)
+    {
+        std::cout << "Exception (execute grade too low): " << e.what() << std::endl;
+    }
 
-    K.signForm(Bac);
-
-
-    // ---- already signed 
-    std::cout << Bac << std::endl;
-
-    K.signForm(Bac);
-
-    //  ---- Low grade 
-    Form certif("certificate", 1, 2);
-    
-    std::cout << certif << std::endl;
-    
-    D.signForm(certif);
-
-    // --- copy form
-    std::cout << " \n===== ORIGINAL ==== \n";
-    std::cout << Bac << std::endl;
-    Form copy(Bac);
-    std::cout << " \n===== COPY ==== \n";
-    std::cout << copy << std::endl;
-
-    // -- copy form
-
-    std::cout << " \n===== ORIGINAL ==== \n";
-    std::cout << Bac << std::endl;
-    Form copy2 = Bac;
-    std::cout << " \n===== COPY ==== \n";
-    std::cout << copy2 << std::endl;
-
+    return 0;
 }
