@@ -8,7 +8,7 @@ int main()
 {
     try
     {
-        Bureaucrat boss("Boss", 10);
+        Bureaucrat boss("Boss", 1);
 
         ShrubberyCreationForm shrub("Home");
         RobotomyRequestForm robot("Bemo");
@@ -35,45 +35,29 @@ int main()
 
     std::cout << "\n -- Form is not signed -- \n" << std::endl;
 
-    try
-    {
+
         ShrubberyCreationForm shrub("office");
         Bureaucrat ceo("CEO", 1);
 
         ceo.executeForm(shrub);
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "Exception (not signed): " << e.what() << std::endl;
-    }
+
 
     std::cout << "\n -- Couldn't sign Grade is too low -- \n" << std::endl;
-    try
-    {
+
         RobotomyRequestForm robot("Emo");
         Bureaucrat stagiaire("stagiaire", 150);
 
         stagiaire.signForm(robot);
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "Exception (sign grade too low): " << e.what() << std::endl;
-    }
+
 
     std::cout << "\n -- couldn't execute Grade is too low -- \n" << std::endl;
-    try
-    {
-        PresidentialPardonForm pardon("Ford Prefect");
+
+        PresidentialPardonForm pardon("X");
         Bureaucrat boss("Boss", 1);
         Bureaucrat low("Low", 150);
 
         boss.signForm(pardon);
         low.executeForm(pardon);
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "Exception (execute grade too low): " << e.what() << std::endl;
-    }
 
     return 0;
 }

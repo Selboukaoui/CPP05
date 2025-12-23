@@ -35,10 +35,10 @@ void ShrubberyCreationForm::executeAction() const
     if (!outfile.is_open())
     {
         std::cerr << "Error: Could not create file " << filename << std::endl;
-        return;
+        return ;
     }
 
-    outfile << "               ,@@@@@@@,\n";
+    outfile << "               ,@@@@@@@,\n" ;
     outfile << "       ,,,.   ,@@@@@@/@@,  .oo8888o.\n";
     outfile << "    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n";
     outfile << "   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n";
