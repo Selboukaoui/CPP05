@@ -1,5 +1,3 @@
-
-
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
@@ -64,18 +62,18 @@ int main()
     D.signForm(certif);
 
     // --- copy form
-    std::cout << " \n===== ORIGINAL ==== \n";
+    std::cout << " \n == original == \n";
     std::cout << Bac << std::endl;
     Form copy(Bac);
-    std::cout << " \n===== COPY ==== \n";
+    std::cout << " \n == copy == \n";
     std::cout << copy << std::endl;
 
     // -- copy form
 
-    std::cout << " \n===== ORIGINAL ==== \n";
+    std::cout << " \n == original == \n";
     std::cout << Bac << std::endl;
     Form copy2 = Bac;
-    std::cout << " \n===== COPY ==== \n";
+    std::cout << " \n === copy == \n";
     std::cout << copy2 << std::endl;
 
 }

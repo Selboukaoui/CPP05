@@ -1,7 +1,5 @@
 #include "Bureaucrat.hpp"
 
-
-
 Bureaucrat::Bureaucrat()
 :name("default"), grade(1){}
 

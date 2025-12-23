@@ -32,11 +32,11 @@ void RobotomyRequestForm::executeAction() const
 {
     std::cout << "* DRILLING NOISES * BZZZZzzzzzZZZZzzz... *" << std::endl;
     
-    static bool seeded = false;
-    if (!seeded)
+    static bool tmp = false;
+    if (!tmp)
     {
         std::srand(std::time(NULL));
-        seeded = true;
+        tmp = true;
     }
     
     if (std::rand() % 2 == 0)
